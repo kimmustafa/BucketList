@@ -126,7 +126,7 @@ def addWish():
             cursor.callproc('sp_addWish', (_title, _description, _user))
             data = cursor.fetchall()
 
-            if len(data) > 0:
+            if len(data) is 0:
                 conn.commit()
                 return redirect('/user_home')
             else:
@@ -205,7 +205,7 @@ def updateWish():
             cursor.callproc('sp_updateWish',(_title,_description,_wish_id,_user))
             data = cursor.fetchall()
 
-            if len(data) is 0:
+            if len(data) > 0:
                 conn.commit()
                 return json.dumps({'status':'OK'})
             else:
